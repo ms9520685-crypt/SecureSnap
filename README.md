@@ -220,13 +220,14 @@ This provides a basic way of monitoring security-related activity during the app
 
 After implementing the security features, I tested the application against several common scenarios.
 
-Test	                 What I Tried	                         Expected Result 	            Result
-SQL Injection	         SQL injection login payload	         Login should fail	            ✅ PASS
-Unauthorized Download	 Download without purchasing	         Access should be denied	    ✅ PASS
-Protected Page	         Access /photos without login	         Redirect to login	            ✅ PASS
-Brute Force	             Multiple login attempts	             Rate limit should trigger      ✅ PASS
-XSS	                     JavaScript payload as username          Script should not execute	    ✅ PASS
-CSRF	                 POST request without valid CSRF token	 Request should be rejected	    ✅ IMPLEMENTED
+| Test | What I Tried | Expected Result | Result |
+|---|---|---|---|
+| SQL Injection | SQL injection login payload | Login should fail | PASS |
+| Unauthorized Download | Download without purchasing | Access should be denied | PASS |
+| Protected Page | Access `/photos` without login | Redirect to login | PASS |
+| Brute Force | Multiple login attempts | Rate limit should trigger | PASS |
+| XSS | JavaScript payload as username | Script should not execute | PASS |
+| CSRF Protection | POST request without valid CSRF token | Request should be rejected | IMPLEMENTED |
 ---
 # SQL Injection Test
 Payload
