@@ -79,7 +79,7 @@ If they have not purchased it, the application returns a `403 Forbidden` respons
 
 # Security Features
 
-# 1. Password Hashing
+## 1. Password Hashing
 
 Passwords are never stored as plain text.
 
@@ -94,7 +94,7 @@ hash before being stored in the database.
 
 During login, the entered password is compared with the stored hash.
 
-# 2. Authentication
+## 2. Authentication
 
 Flask-Login is used to handle user authentication and sessions.
 
@@ -108,7 +108,7 @@ def photos():
 
 This prevents users who are not logged in from directly accessing protected pages.
 
-# 3. Authorization
+## 3. Authorization
 
 Authentication answers:
 "Who is the user?"
@@ -120,7 +120,7 @@ SecureSnap checks the user's purchase record before allowing a photo to be downl
 This means that even if a user knows the URL of another photograph,
 they cannot download it unless they have purchased it.
 
-# 4. CSRF Protection
+## 4. CSRF Protection
 Cross-Site Request Forgery (CSRF) protection is enabled using Flask-WTF.
 POST forms contain CSRF tokens so that requests cannot simply be submitted from another website without the required security token.
 CSRF protection is applied to actions such as:
@@ -129,7 +129,7 @@ CSRF protection is applied to actions such as:
 -Login
 -Photo purchase
 
-# 5. Brute-Force Protection
+## 5. Brute-Force Protection
 Repeated login attempts can be used to guess passwords.
 To reduce this risk, Flask-Limiter is used to limit login attempts.
 
@@ -140,7 +140,7 @@ When the limit is exceeded, the application returns:
 '429 Too Many Requests'
 This was tested manually by making multiple incorrect login attempts.
 
-# 6. Input Validation
+## 6. Input Validation
 The registration system performs basic input validation.
 It checks that:
 
@@ -151,7 +151,7 @@ Password contains at least 8 characters
 Username is not already registered
 This prevents invalid or obviously weak input from being accepted.
 
-# 7. SQL Injection Protection
+## 7. SQL Injection Protection
 
 The application uses SQLAlchemy for database operations instead of building SQL queries directly from user input.
 For example:
@@ -168,7 +168,7 @@ Invalid username or password.
 The login was not bypassed.
 Result: PASS ✅
 
-# 8. XSS Protection
+## 8. XSS Protection
 
 Cross-Site Scripting (XSS) was also tested.
 The following payload was entered as a username:
@@ -180,7 +180,7 @@ through the templates.
 
 Result: PASS ✅
 
-# 9. Secure Download Authorization
+## 9. Secure Download Authorization
 The download route performs an authorization check before returning the image.
 
 The application checks:
@@ -196,7 +196,7 @@ Access denied. You must purchase this photo first.
 with HTTP status:
 403 Forbidden
 
-# 10. Security Logging
+## 10. Security Logging
 
 SecureSnap records important security-related events in:
 security.log
@@ -216,7 +216,7 @@ EVENT=SUCCESSFUL_LOGIN | USER=testuser2 | IP=127.0.0.1
 
 This provides a basic way of monitoring security-related activity during the application's operation.
 
-# 11. Security Testing
+## 11. Security Testing
 
 After implementing the security features, I tested the application against several common scenarios.
 
@@ -286,28 +286,31 @@ The browser did not execute the JavaScript.
 
 Result: PASS ✅
 ---
-#  System Architecture
+## System Architecture
+
+```text
                          User
-                          │
-                          ▼
-                  ┌───────────────┐
-                  │  Flask Web App │
-                  └───────┬───────┘
-                          │
-             ┌────────────┼────────────┐
-             │            │            │
-             ▼            ▼            ▼
-       Authentication  Authorization  Input Security
-             │            │            │
-             ▼            ▼            ▼
-        Flask-Login   Purchase Check   CSRF
-        Password Hash Download Check   Validation
-             │
-             ▼
-        ┌───────────────┐
-        │ SQLite        │
-        │ Database      │
-        └───────────────┘
+                           │
+                           ▼
+                   ┌───────────────┐
+                   │  Flask Web App │
+                   └───────┬───────┘
+                           │
+              ┌────────────┼────────────┐
+              │            │            │
+              ▼            ▼            ▼
+        Authentication  Authorization  Input Security
+              │            │            │
+              ▼            ▼            ▼
+         Flask-Login   Purchase Check   CSRF
+         Password Hash Download Check   Validation
+              │
+              ▼
+         ┌───────────────┐
+         │ SQLite        │
+         │ Database      │
+         └───────────────┘
+```
 
                  Security Monitoring
                          │
