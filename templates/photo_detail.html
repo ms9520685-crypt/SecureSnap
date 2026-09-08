@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ photo.title }} - SecureSnap</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>{{ photo.title }}</h1>
+
+        <img
+            src="{{ photo.image_url }}"
+            alt="{{ photo.title }}"
+            style="max-width: 600px; width: 100%; border-radius: 10px;"
+        >
+
+        <p>{{ photo.description }}</p>
+
+        <h3>${{ "%.2f"|format(photo.price) }}</h3>
+
+        {% if purchased %}
+
+            <p style="color: green; font-weight: bold;">
+                ✓ You own this photo
+            </p>
+
+            <a href="{{ url_for('download', photo_id=photo.id) }}">
+                <button>Download Photo</button>
+            </a>
+
+        {% else %}
+
+            <form method="POST"
+                  action="{{ url_for('purchase', photo_id=photo.id) }}">
+
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="{{ csrf_token() }}"
+                >
+
+                <button type="submit">
+                    Purchase Photo
+                </button>
+
+            </form>
+
+        {% endif %}
+
+        <br><br>
+
+        <a href="{{ url_for('photos') }}">
+            Back to Photos
+        </a>
+
+    </div>
+
+</body>
+</html>
