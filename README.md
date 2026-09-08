@@ -330,7 +330,9 @@ HTML
 CSS
 Jinja2 Templates
 
-# Project Structure
+# 14. Project Structure
+
+```text
 SecureSnap/
 │
 ├── static/
