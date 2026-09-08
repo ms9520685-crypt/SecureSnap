@@ -350,14 +350,16 @@ SecureSnap/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+```
 
-The following local files/folders are intentionally excluded from
-the Git repository:
+The following local files/folders are intentionally excluded from the Git repository:
 
+```text
 venv/
 instance/
 security.log
 .env
+```
 
 # Running the Project
 1. Clone the repository
