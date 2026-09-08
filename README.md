@@ -310,28 +310,32 @@ Result: PASS ✅
          │ SQLite        │
          │ Database      │
          └───────────────┘
-```
-
                  Security Monitoring
                          │
                          ▼
                  ┌───────────────┐
                  │ security.log  │
                  └───────────────┘
+```
+
 # Technologies Used
-Backend
-Python
-Flask
-Flask-SQLAlchemy
-Flask-Login
-Flask-WTF
-Flask-Limiter
-Database
-SQLite
-Frontend
-HTML
-CSS
-Jinja2 Templates
+## Technologies Used
+
+### Backend
+- Python
+- Flask
+- Flask-SQLAlchemy
+- Flask-Login
+- Flask-WTF
+- Flask-Limiter
+
+### Database
+- SQLite
+
+### Frontend
+- HTML
+- CSS
+- Jinja2 Templates
 
 # 14. Project Structure
 
